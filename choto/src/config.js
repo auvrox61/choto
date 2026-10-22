@@ -1,7 +1,8 @@
 const num = (v, d) => (v === undefined || v === '' ? d : Number(v));
 
 const port = num(process.env.PORT, 3000);
-const baseUrl = (process.env.BASE_URL || `http://localhost:${port}`).replace(/\/$/, '');
+// Render provides RENDER_EXTERNAL_URL automatically.
+const baseUrl = (process.env.BASE_URL || process.env.RENDER_EXTERNAL_URL || `http://localhost:${port}`).replace(/\/$/, '');
 
 export const config = {
   port,
