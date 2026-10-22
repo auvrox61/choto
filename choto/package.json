@@ -1,0 +1,19 @@
+{
+  "name": "choto",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20.6" },
+  "scripts": {
+    "dev": "node --env-file=.env --watch src/server.js",
+    "start": "node src/server.js",
+    "migrate": "node scripts/migrate.js",
+    "migrate:local": "node --env-file=.env scripts/migrate.js",
+    "build": "npm --prefix web install --include=dev && npm --prefix web run build",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
+  }
+}

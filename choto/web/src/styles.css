@@ -1,0 +1,275 @@
+/* ===================================================================
+   CHOTO — Exact UI match to ui_design_frontend.png
+   - Background: Pure black (#000000)
+   - Brand Green: Electric lime (#6cfa29)
+   - Typography:
+     • Logo: 'Rubik' 900 (exact geometric rounded block letters)
+     • Labels: 'Silkscreen' 700 (exact chunky bitmap pixel font)
+     • Inputs: 'Share Tech Mono' (clean monospace terminal font)
+   - Brutalist solid drop shadow (12px 12px 0 #6cfa29)
+   - Solid 4px borders with zero border-radius
+   - Solid green action buttons with pure black icons (arrow & copy)
+   =================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@900&family=Silkscreen:wght@700&family=Share+Tech+Mono&display=swap');
+
+:root {
+  --bg: #000000;
+  --green: #6cfa29;
+  --green-hover: #7efc40;
+  --green-active: #5cdb1e;
+  --green-dim: rgba(108, 250, 41, 0.45);
+  --border-width: 4px;
+  --font-logo: 'Rubik', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-pixel: 'Silkscreen', monospace;
+  --font-mono: 'Share Tech Mono', 'Courier New', monospace;
+}
+
+/* ── Reset ─────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--green);
+  font-family: var(--font-mono);
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Main Terminal Window ──────────────────────────────────────────── */
+.window {
+  width: min(720px, 100%);
+  background: var(--bg);
+  border: var(--border-width) solid var(--green);
+  box-shadow: 12px 12px 0 var(--green);
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Title Bar ─────────────────────────────────────────────────────── */
+.titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 2rem;
+  border-bottom: var(--border-width) solid var(--green);
+  background: var(--bg);
+}
+
+.titlebar h1 {
+  font-family: var(--font-logo);
+  font-weight: 900;
+  font-size: clamp(2.8rem, 7vw, 4.2rem);
+  letter-spacing: -0.015em;
+  line-height: 0.95;
+  color: var(--green);
+  text-transform: uppercase;
+  user-select: none;
+}
+
+/* Solid green square on top-right */
+.titlebar-square {
+  width: 36px;
+  height: 36px;
+  background: var(--green);
+  flex-shrink: 0;
+  border-radius: 0;
+}
+
+/* ── Window Content ────────────────────────────────────────────────── */
+.window-body {
+  padding: 3.5rem 2.5rem 4rem;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Pixel Bitmap Labels ───────────────────────────────────────────── */
+.field-label {
+  display: block;
+  font-family: var(--font-pixel);
+  font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+
+/* ── Input Box with Integrated Action Button ───────────────────────── */
+.terminal-box {
+  display: flex;
+  align-items: stretch;
+  border: var(--border-width) solid var(--green);
+  background: var(--bg);
+  height: 64px;
+  border-radius: 0;
+}
+
+.terminal-box input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  color: var(--green);
+  padding: 0 1.25rem;
+  caret-color: var(--green);
+  border-radius: 0;
+}
+
+.terminal-box input::placeholder {
+  color: var(--green-dim);
+  opacity: 1;
+}
+
+.terminal-box input:focus {
+  outline: none;
+}
+
+/* ── Solid Green Action Button ─────────────────────────────────────── */
+.btn-action {
+  width: 82px;
+  flex-shrink: 0;
+  background: var(--green);
+  border: none;
+  border-left: var(--border-width) solid var(--green);
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #000000;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+
+.btn-action:hover:not(:disabled) {
+  background: var(--green-hover);
+}
+
+.btn-action:active:not(:disabled) {
+  background: var(--green-active);
+  transform: scale(0.97);
+}
+
+.btn-action:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Icons inside the button (pure black) */
+.btn-action svg {
+  width: 32px;
+  height: 32px;
+  stroke: #000000;
+  fill: none;
+  stroke-width: 3.2;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+/* ── Spacing Between Form Sections ─────────────────────────────────── */
+.field-group {
+  position: relative;
+}
+
+.field-group + .field-group {
+  margin-top: 3.5rem;
+}
+
+/* ── Error Message ─────────────────────────────────────────────────── */
+.error-msg {
+  min-height: 1.5rem;
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+  color: #ff3b3b;
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+.error-msg:empty {
+  visibility: hidden;
+}
+
+/* ── Loading Animation ─────────────────────────────────────────────── */
+.spinner {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner span {
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: #000000;
+  border-radius: 0;
+  animation: dotPulse 0.8s ease-in-out infinite;
+}
+
+.spinner span:nth-child(2) { animation-delay: 0.15s; }
+.spinner span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes dotPulse {
+  0%, 80%, 100% { opacity: 0.2; transform: scale(0.7); }
+  40% { opacity: 1; transform: scale(1); }
+}
+
+/* ── Focus Outline ─────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px dashed var(--green);
+  outline-offset: 3px;
+}
+
+/* ── Responsive adjustments ────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .window {
+    box-shadow: 8px 8px 0 var(--green);
+  }
+
+  .window-body {
+    padding: 2rem 1.25rem 2.5rem;
+  }
+
+  .titlebar {
+    padding: 1rem 1.25rem;
+  }
+
+  .titlebar-square {
+    width: 26px;
+    height: 26px;
+  }
+
+  .terminal-box {
+    height: 54px;
+  }
+
+  .btn-action {
+    width: 64px;
+  }
+
+  .btn-action svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .field-group + .field-group {
+    margin-top: 2.25rem;
+  }
+}
